@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Banner, VisionMission, Statistic, Initiative
+from .models import *
 
 def home(request):
     banners = Banner.objects.filter(status=True)
@@ -15,3 +15,19 @@ def home(request):
     }
 
     return render(request, 'home.html', context)
+
+
+def about(request):
+    story = OurStory.objects.first()
+    values = CoreValue.objects.all()
+    programs = Program.objects.all()
+    team = TeamMember.objects.all()
+
+    context = {
+        'story': story,
+        'values': values,
+        'programs': programs,
+        'team': team,
+    }
+
+    return render(request, 'about.html', context)
