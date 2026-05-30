@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: ngo-cms
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn ngo_cms.wsgi:application"
