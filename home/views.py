@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from .models import *
 
+
+# HOME PAGE
+
 def home(request):
     banners = Banner.objects.filter(status=True)
     vision_mission = VisionMission.objects.first()
@@ -16,6 +19,8 @@ def home(request):
 
     return render(request, 'home.html', context)
 
+
+# ABOUT PAGE
 
 def about(request):
     story = OurStory.objects.first()
@@ -33,14 +38,38 @@ def about(request):
     return render(request, 'about.html', context)
 
 
+# PROJECT PAGE
+
 def projects(request):
+
     status = request.GET.get('status')
 
     if status:
-        projects = Project.objects.filter(status=status)
+        project_list = Project.objects.filter(status=status)
     else:
-        projects = Project.objects.all()
+        project_list = Project.objects.all()
 
-    return render(request, 'project.html', {
-        'projects': projects
-    })
+    context = {
+        'projects': project_list,
+    }
+
+    return render(request, 'project.html', context)
+
+
+# MEDIA PAGE
+
+def media(request):
+
+    press_releases = PressRelease.objects.all()
+    media_coverages = MediaCoverage.objects.all()
+    gallery_images = ImageGallery.objects.all()
+    videos = Video.objects.all()
+
+    context = {
+        'press_releases': press_releases,
+        'media_coverages': media_coverages,
+        'gallery_images': gallery_images,
+        'videos': videos,
+    }
+
+    return render(request, 'media.html', context)

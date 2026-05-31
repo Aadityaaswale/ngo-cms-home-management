@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Page - NGO CMS</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+
+        body{
+            background:#f8f9fa;
+        }
+
+        .navbar{
+            background:#1f2937 !important;
+        }
+
+        .hero{
+            background:linear-gradient(135deg,#0d6efd,#4f46e5);
+            color:white;
+            text-align:center;
+            padding:80px 0;
+        }
+
+        .hero h1{
+            font-size:3.5rem;
+            font-weight:bold;
+        }
+
+        .section-title{
+            text-align:center;
+            margin-bottom:40px;
+            font-weight:bold;
+        }
+
+        .card{
+            border:none;
+            border-radius:15px;
+            box-shadow:0 0 15px rgba(0,0,0,.08);
+            transition:.3s;
+        }
+
+        .card:hover{
+            transform:translateY(-5px);
+        }
+
+        .gallery-img{
+            height:250px;
+            width:100%;
+            object-fit:cover;
+            border-radius:10px;
+        }
+
+        footer{
+            background:#1f2937;
+            color:white;
+            padding:40px;
+            text-align:center;
+            margin-top:70px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+
+        <a class="navbar-brand fw-bold fs-3" href="/">
+            🌍 NGO CMS
+        </a>
+
+        <div class="navbar-nav ms-auto">
+    <a class="nav-link text-white" href="/">Home</a>
+    <a class="nav-link text-white" href="/about/">About Us</a>
+    <a class="nav-link text-white" href="/projects/">Projects</a>
+    <a class="nav-link active text-white" href="/media/">Media</a>
+</div>
+
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="container">
+        <h1>Media Center</h1>
+        <p class="lead">
+            Explore our latest news, media coverage, gallery and videos.
+        </p>
+    </div>
+</section>
+
+<div class="container my-5">
+
+    <h2 class="section-title">Press Releases</h2>
+
+    <div class="row">
+
+        {% for press in press_releases %}
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card p-4 h-100">
+
+                <h4>{{ press.title }}</h4>
+
+                <p>{{ press.description }}</p>
+
+                <small class="text-muted">
+                    {{ press.release_date }}
+                </small>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<div class="container my-5">
+
+    <h2 class="section-title">Media Coverage</h2>
+
+    <div class="row">
+
+        {% for media in media_coverages %}
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card p-4 h-100">
+
+                <h4>{{ media.title }}</h4>
+
+                <a href="{{ media.url }}" target="_blank" class="btn btn-primary">
+                    View Coverage
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<div class="container my-5">
+
+    <h2 class="section-title">Image Gallery</h2>
+
+    <div class="row">
+
+        {% for image in gallery_images %}
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card p-3">
+
+                <img src="{{ image.image.url }}" class="gallery-img">
+
+                <p class="mt-3 text-center">
+                    {{ image.description }}
+                </p>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<div class="container my-5">
+
+    <h2 class="section-title">Videos</h2>
+
+    <div class="row">
+
+        {% for video in videos %}
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card p-4">
+
+                <h5>{{ video.description }}</h5>
+
+                <a href="{{ video.video_url }}"
+                   target="_blank"
+                   class="btn btn-danger mt-3">
+                    Watch Video
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<div class="container my-5">
+
+    <div class="card p-5 text-center">
+
+        <h2>Media Contact</h2>
+
+        <p class="lead">
+            For media inquiries, collaborations and interviews.
+        </p>
+
+        <h5>Email: media@ngocms.org</h5>
+
+        <h5>Phone: +91 9876543210</h5>
+
+    </div>
+
+</div>
+
+<footer>
+
+    <h3>🌍 NGO CMS</h3>
+
+    <p>
+        Showcasing impact through stories, media and community engagement.
+    </p>
+
+    <p>
+        © 2026 NGO CMS. All Rights Reserved.
+    </p>
+
+</footer>
+
+</body>
+</html>

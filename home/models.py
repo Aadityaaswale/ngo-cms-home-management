@@ -98,3 +98,38 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+
+
+# MEDIA MODULE
+
+class PressRelease(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    release_date = models.DateField()
+
+    def __str__(self):
+        return self.title
+
+
+class MediaCoverage(models.Model):
+    title = models.CharField(max_length=255)
+    url = models.URLField()
+
+    def __str__(self):
+        return self.title
+
+
+class ImageGallery(models.Model):
+    image = models.ImageField(upload_to='gallery/')
+    description = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+        return self.description if self.description else "Gallery Image"
+
+
+class Video(models.Model):
+    video_url = models.URLField()
+    description = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+        return self.description if self.description else "Video"
