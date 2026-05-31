@@ -10,3 +10,5 @@ admin.site.register(OurStory)
 admin.site.register(CoreValue)
 admin.site.register(Program)
 admin.site.register(TeamMember)
+
+admin.site.register(Project)

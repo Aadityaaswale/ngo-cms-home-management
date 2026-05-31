@@ -31,3 +31,16 @@ def about(request):
     }
 
     return render(request, 'about.html', context)
+
+
+def projects(request):
+    status = request.GET.get('status')
+
+    if status:
+        projects = Project.objects.filter(status=status)
+    else:
+        projects = Project.objects.all()
+
+    return render(request, 'project.html', {
+        'projects': projects
+    })

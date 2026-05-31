@@ -1,6 +1,8 @@
 from django.db import models
 
 
+# HOME MODULE
+
 class Banner(models.Model):
     title = models.CharField(max_length=150)
     description = models.TextField()
@@ -74,3 +76,25 @@ class TeamMember(models.Model):
 
     def __str__(self):
         return self.name
+
+
+# PROJECT MODULE
+
+class Project(models.Model):
+
+    STATUS_CHOICES = (
+        ('Ongoing', 'Ongoing'),
+        ('Completed', 'Completed'),
+        ('Upcoming', 'Upcoming'),
+    )
+
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+    location = models.CharField(max_length=255, blank=True)
+    image = models.ImageField(upload_to='projects/')
+
+    def __str__(self):
+        return self.title
